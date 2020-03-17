@@ -5,31 +5,34 @@
 
 using namespace enviro;
 
+//TODO: add counters for bullets, add ricochet bullets, add barriers, add damage UI
 class MyDudeController : public Process, public AgentInterface {
 
     public:
-    MyDudeController() : Process(), AgentInterface(), f(0), tau(0), firing(false), damage(0), bigCount(10), smallCount(25) {}
+    MyDudeController() : Process(), AgentInterface(), f(0), tau(0), firing(false), damage(0), bigCount(10), smallCount(25), bigReload(0), smallReload(0) {}
 
     void init() {
         watch("keydown", [&](Event &e) {
             if ( e.value()["client_id"] == get_client_id() ) {
                 auto k = e.value()["key"].get<std::string>();
-                if ( k == "f" && !firing ) {
+                if ( k == "f" && !firing && bigCount > 0) {
                     Agent& bullet = add_agent("BigBullet", 
                     x() + 80*cos(angle()), 
                     y() + 80*sin(angle()), 
                     angle(), 
                     BULLET_STYLE);    
                     bullet.apply_force(40,0);
+                    bigCount--;
                     firing = true;
-                } else if (k == " " && !firing) {
+                } else if (k == " " && !firing && smallCount > 0) {
                     Agent& bullet = add_agent("SmallBullet", 
                     x() + 50*cos(angle()), 
                     y() + 50*sin(angle()), 
                     angle(), 
                     BULLET_STYLE);    
-                    bullet.apply_force(50,0);
+                    bullet.apply_force(70,0);
                     std::cout<<"hello \n";
+                    smallCount--;
                     firing = true;
                 }else if ( k == "w" ) {
                         f = magnitude;              
@@ -73,17 +76,31 @@ class MyDudeController : public Process, public AgentInterface {
             remove_agent(ID);
         });
 
-        notice_collisions_with("wall", [&](Event &e){
+        notice_collisions_with("Wall", [&](Event &e){
             damage = 1;
-            //teleport
+            bigCount = 10;
+            smallCount = 25;
+            double x = rand() % 2 ? 500 : -500;
+            double y = rand() % 2 ? 500 : -500;
+            teleport(x,y,0);
         });
     }
     void start() {}
     void update() {
         apply_force(f,tau);
+        if(smallReload++ == 10 && smallCount < 25) {
+            smallCount++;
+            smallReload = 0;
         }
+        if(bigReload++ == 30 && bigCount < 10){
+            bigCount++;
+            bigReload = 0;
+        }
+    }
     void stop() {}
 
+    int bigReload;
+    int smallReload;
     double f, tau;
     double const magnitude = 200;
     bool firing;
@@ -95,8 +112,6 @@ class MyDudeController : public Process, public AgentInterface {
                    {"fill", "black"}, 
                    {"stroke", "#888"}, 
                };
-
-
 
 };
 
