@@ -8,7 +8,7 @@ using namespace enviro;
 class SystemControllerController : public Process, public AgentInterface {
 
     public:
-    SystemControllerController() : Process(), AgentInterface(), color({"blue","green","yellow", "orange"}),x({500,500,-500,-500}), y({500,-500, 500, -500}) {}
+    SystemControllerController() : Process(), AgentInterface(), timer(0){}
 
     void init() {
         watch("connection", [&](Event e) {
@@ -21,13 +21,25 @@ class SystemControllerController : public Process, public AgentInterface {
         });
     }
     void start() {}
-    void update() {}
+    void update() {
+        if(timer++ >= 200){
+            int rx = rand() % 500;
+            int ry = rand() % 500;
+            rx = rand() % 2 ? -rx : rx;
+            ry = rand() % 2 ? -ry : ry;
+            std::cout<<rand()%2<<"\n";
+            add_agent(powerups[(int)rand()%2], rx, ry, 0, {{"fill","black",{"stroke","black"}}});
+            timer = 0;
+        }
+    }
     void stop() {}
 
-    std::vector<int> x;
-    std::vector<int> y;
-    std::vector<string> color;
+    std::vector<int> const x = {500,500,-500,-500};
+    std::vector<int> const y = {500,-500, 500, -500};
+    std::vector<string> const color = {"blue","green","yellow", "orange"};
+    std::vector<string> const powerups = {"Reload", "Accel", "Bounce", "Shield", "Health"};
     int count;
+    int timer;
 };
 
 class SystemController : public Agent {

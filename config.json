@@ -25,7 +25,12 @@
   "definition": "defs/wall.json",
   "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
   "position": { "x": -600, "y": 0, "theta": 1.57 }
-}
+},
+{
+  "definition": "defs/accel.json",
+  "style": { "fill": "white", "stroke": "black" },
+  "position": { "x": 0, "y": 0, "theta": 0 }
+}      
   ],
 
   "references": [
@@ -43,7 +48,12 @@
       "definition": "defs/small_bullet.json",
       "style": { "fill": "yellow", "stroke": "black" },
       "position": { "x": 0, "y": 0, "theta": 0 }
-  }               
+  },
+  {
+    "definition": "defs/reload.json",
+    "style": { "fill": "teal", "stroke": "black" },
+    "position": { "x": 0, "y": 0, "theta": 0 }
+  }            
 ],
 
 "invisibles": [

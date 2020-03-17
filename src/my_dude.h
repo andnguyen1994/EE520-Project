@@ -9,7 +9,7 @@ using namespace enviro;
 class MyDudeController : public Process, public AgentInterface {
 
     public:
-    MyDudeController() : Process(), AgentInterface(), f(0), tau(0), firing(false), damage(0), bigCount(10), smallCount(25), bigReload(0), smallReload(0) {}
+    MyDudeController() : Process(), AgentInterface(), magnitude(200), f(0), tau(0), firing(false), damage(0), bigCount(10), smallCount(25), bigReload(0), smallReload(0) {}
 
     void init() {
         watch("keydown", [&](Event &e) {
@@ -31,7 +31,6 @@ class MyDudeController : public Process, public AgentInterface {
                     angle(), 
                     BULLET_STYLE);    
                     bullet.apply_force(70,0);
-                    std::cout<<"hello \n";
                     smallCount--;
                     firing = true;
                 }else if ( k == "w" ) {
@@ -62,7 +61,6 @@ class MyDudeController : public Process, public AgentInterface {
         notice_collisions_with("BigBullet", [&](Event &e) {
             int ID = e.value()["id"];
             Agent& b = find_agent(ID);
-            std::cout<<"hello \n";
             omni_apply_force(b.vx()*5*damage, b.vy()*5*damage);
             damage += 6;
             remove_agent(ID);
@@ -84,15 +82,26 @@ class MyDudeController : public Process, public AgentInterface {
             double y = rand() % 2 ? 500 : -500;
             teleport(x,y,0);
         });
+
+        notice_collisions_with("Reload", [&](Event &e){
+            smallCount = 25;
+            bigCount = 10;
+            remove_agent(e.value()["id"]);
+        });
+
+        notice_collisions_with("Accel", [&](Event &e){
+            magnitude += 100;
+            remove_agent(e.value()["id"]);
+        });
     }
     void start() {}
     void update() {
         apply_force(f,tau);
-        if(smallReload++ == 10 && smallCount < 25) {
+        if(smallReload++ >= 10 && smallCount < 25) {
             smallCount++;
             smallReload = 0;
         }
-        if(bigReload++ == 30 && bigCount < 10){
+        if(bigReload++ >= 30 && bigCount < 10){
             bigCount++;
             bigReload = 0;
         }
@@ -101,8 +110,7 @@ class MyDudeController : public Process, public AgentInterface {
 
     int bigReload;
     int smallReload;
-    double f, tau;
-    double const magnitude = 200;
+    double f, tau, magnitude;
     bool firing;
     int damage;
     int smallCount;
