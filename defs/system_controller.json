@@ -1,0 +1,6 @@
+{
+    "name": "SystemController",
+    "type": "invisible",
+    "description": "Replace this string with a description",
+    "controller": "lib/system_controller.so"
+}
