@@ -67,8 +67,8 @@
     "position": { "x": 200, "y": 350, "theta": 1.57 }
   },
   {
-    "definition": "defs/bounce_pu.json",
-    "style": { "fill": "white", "stroke": "black" },
+    "definition": "defs/power_up.json",
+    "style": { "fill": "violet", "stroke": "black" },
     "position": { "x": 0, "y": 0, "theta": 0 }
   }      
   ],
@@ -90,20 +90,10 @@
       "position": { "x": 0, "y": 0, "theta": 0 }
     },
     {
-      "definition": "defs/bounce.json",
+      "definition": "defs/mine.json",
       "style": { "fill": "yellow", "stroke": "black" },
       "position": { "x": 0, "y": 0, "theta": 0 }
-    },
-    {
-      "definition": "defs/accel.json",
-      "style": { "fill": "teal", "stroke": "black" },
-      "position": { "x": 0, "y": 0, "theta": 0 }
-    },
-    {
-      "definition": "defs/reload.json",
-      "style": { "fill": "teal", "stroke": "black" },
-      "position": { "x": 0, "y": 0, "theta": 0 }
-    }              
+    }             
 ],
 
 "invisibles": [

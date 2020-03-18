@@ -5,6 +5,7 @@
 
 using namespace enviro;
 
+//TODO: Add ready button?
 class SystemControllerController : public Process, public AgentInterface {
 
     public:
@@ -27,17 +28,15 @@ class SystemControllerController : public Process, public AgentInterface {
             int ry = rand() % 500;
             rx = rand() % 2 ? -rx : rx;
             ry = rand() % 2 ? -ry : ry;
-            std::cout<<rand()%2<<"\n";
-            add_agent(powerups[(int)rand()%2], rx, ry, 0, {{"fill","black",{"stroke","black"}}});
+            add_agent("PowerUp", rx, ry, 0, {{"fill","violet",{"stroke","black"}}});
             timer = 0;
         }
     }
     void stop() {}
 
-    std::vector<int> const x = {500,500,-500,-500};
+    std::vector<int> const x = {500,-500,-500,500};
     std::vector<int> const y = {500,-500, 500, -500};
     std::vector<string> const color = {"blue","green","yellow", "orange"};
-    std::vector<string> const powerups = {"Reload", "Accel", "Bounce", "Shield", "Health"};
     int count;
     int timer;
 };
