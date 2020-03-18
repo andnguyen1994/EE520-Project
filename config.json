@@ -15,22 +15,62 @@
     "definition": "defs/wall.json",
     "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
     "position": { "x": 0, "y": -600, "theta": 0 }
-},
-{
-  "definition": "defs/wall.json",
-  "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
-  "position": { "x": 600, "y": 0, "theta": 1.57 }
-},
-{
-  "definition": "defs/wall.json",
-  "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
-  "position": { "x": -600, "y": 0, "theta": 1.57 }
-},
-{
-  "definition": "defs/accel.json",
-  "style": { "fill": "white", "stroke": "black" },
-  "position": { "x": 0, "y": 0, "theta": 0 }
-}      
+  },
+  {
+    "definition": "defs/wall.json",
+    "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
+    "position": { "x": 600, "y": 0, "theta": 1.57 }
+  },
+  {
+    "definition": "defs/wall.json",
+    "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
+    "position": { "x": -600, "y": 0, "theta": 1.57 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": -350, "y": -200, "theta": 0 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": -200, "y": -350, "theta": 1.57 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": 350, "y": -200, "theta": 0 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": 200, "y": -350, "theta": 1.57 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": -350, "y": 200, "theta": 0 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": -200, "y": 350, "theta": 1.57 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": 350, "y": 200, "theta": 0 }
+  },
+  {
+    "definition": "defs/barrier.json",
+    "style": { "fill": "black", "stroke": "#888"},
+    "position": { "x": 200, "y": 350, "theta": 1.57 }
+  },
+  {
+    "definition": "defs/bounce_pu.json",
+    "style": { "fill": "white", "stroke": "black" },
+    "position": { "x": 0, "y": 0, "theta": 0 }
+  }      
   ],
 
   "references": [
@@ -48,12 +88,22 @@
       "definition": "defs/small_bullet.json",
       "style": { "fill": "yellow", "stroke": "black" },
       "position": { "x": 0, "y": 0, "theta": 0 }
-  },
-  {
-    "definition": "defs/reload.json",
-    "style": { "fill": "teal", "stroke": "black" },
-    "position": { "x": 0, "y": 0, "theta": 0 }
-  }            
+    },
+    {
+      "definition": "defs/bounce.json",
+      "style": { "fill": "yellow", "stroke": "black" },
+      "position": { "x": 0, "y": 0, "theta": 0 }
+    },
+    {
+      "definition": "defs/accel.json",
+      "style": { "fill": "teal", "stroke": "black" },
+      "position": { "x": 0, "y": 0, "theta": 0 }
+    },
+    {
+      "definition": "defs/reload.json",
+      "style": { "fill": "teal", "stroke": "black" },
+      "position": { "x": 0, "y": 0, "theta": 0 }
+    }              
 ],
 
 "invisibles": [
@@ -64,26 +114,6 @@
 ],
 
 
-  "statics": [
-    {
-      "style": { "fill": "black", "stroke": "none" },
-      "shape": [
-        { "x": -350, "y": -200 },
-        { "x": -350, "y": 200 },
-        { "x": -340, "y": 200 },
-        { "x": -340, "y": -200 }
-      ]
-    },
-
-    {
-      "style": { "fill": "black", "stroke": "none" },
-      "shape": [
-        { "x": 350, "y": -200 },
-        { "x": 350, "y": 200 },
-        { "x": 340, "y": 200 },
-        { "x": 340, "y": -200 }
-      ]
-    }
-    
+  "statics": [    
   ]
 }

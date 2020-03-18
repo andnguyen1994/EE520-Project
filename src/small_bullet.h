@@ -14,6 +14,12 @@ class SmallBulletController : public Process, public AgentInterface {
         notice_collisions_with("Wall", [&](Event &e) {
             remove_agent(id());
         });
+        notice_collisions_with("Barrier", [&](Event &e) {
+            remove_agent(id());
+        });
+        notice_collisions_with("BigBullet", [&](Event &e) {
+            remove_agent(id());
+        });
     }
     void start() {}
     void update() {

@@ -10,7 +10,9 @@ class ReloadController : public Process, public AgentInterface {
     public:
     ReloadController() : Process(), AgentInterface() {}
 
-    void init() {}
+    void init() {
+        label("R", -5, 5 );
+    }
     void start() {}
     void update() {}
     void stop() {}

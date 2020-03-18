@@ -10,7 +10,9 @@ class AccelController : public Process, public AgentInterface {
     public:
     AccelController() : Process(), AgentInterface() {}
 
-    void init() {}
+    void init() {
+        label("A", -5, 5 );
+    }
     void start() {}
     void update() {}
     void stop() {}

@@ -9,13 +9,13 @@ using namespace enviro;
 class MyDudeController : public Process, public AgentInterface {
 
     public:
-    MyDudeController() : Process(), AgentInterface(), magnitude(200), f(0), tau(0), firing(false), damage(0), bigCount(10), smallCount(25), bigReload(0), smallReload(0) {}
+    MyDudeController() : Process(), AgentInterface(), bounceCount(0), magnitude(200), f(0), tau(0), firing(false), damage(0), bigCount(10), smallCount(25), bigReload(0), smallReload(0) {}
 
     void init() {
         watch("keydown", [&](Event &e) {
             if ( e.value()["client_id"] == get_client_id() ) {
                 auto k = e.value()["key"].get<std::string>();
-                if ( k == "f" && !firing && bigCount > 0) {
+                if ( k == "k" && !firing && bigCount > 0) {
                     Agent& bullet = add_agent("BigBullet", 
                     x() + 80*cos(angle()), 
                     y() + 80*sin(angle()), 
@@ -24,7 +24,7 @@ class MyDudeController : public Process, public AgentInterface {
                     bullet.apply_force(40,0);
                     bigCount--;
                     firing = true;
-                } else if (k == " " && !firing && smallCount > 0) {
+                } else if (k == "j" && !firing && smallCount > 0) {
                     Agent& bullet = add_agent("SmallBullet", 
                     x() + 50*cos(angle()), 
                     y() + 50*sin(angle()), 
@@ -33,7 +33,15 @@ class MyDudeController : public Process, public AgentInterface {
                     bullet.apply_force(70,0);
                     smallCount--;
                     firing = true;
-                }else if ( k == "w" ) {
+                } else if (k == "l" && !firing && bounceCount > 0) {
+                    Agent& bullet = add_agent("Bounce", 
+                    x() - 50*cos(angle()), 
+                    y() - 50*sin(angle()), 
+                    angle(), 
+                    BULLET_STYLE);    
+                    bounceCount--;
+                    firing = true;
+                } else if ( k == "w" ) {
                         f = magnitude;              
                 } else if ( k == "s" ) {
                         f = -magnitude;  
@@ -41,13 +49,15 @@ class MyDudeController : public Process, public AgentInterface {
                         tau = -magnitude;
                 } else if ( k == "d" ) {
                         tau = magnitude;
+                }else if ( k == " " ) {
+                        apply_force(magnitude*50,tau);
                 }
             }
         });
         watch("keyup", [&](Event &e) {
             if ( e.value()["client_id"] == get_client_id() ) {
                 auto k = e.value()["key"].get<std::string>();
-                if ( k == " " || k == "f" ) {
+                if ( k == "j" || k == "k" || k == "l" ) {
                     firing = false;
                 } else if ( k == "w" || k == "s" ) {
                     f = 0;               
@@ -74,6 +84,14 @@ class MyDudeController : public Process, public AgentInterface {
             remove_agent(ID);
         });
 
+        notice_collisions_with("Bounce", [&](Event &e) {
+            int ID = e.value()["id"];
+            Agent& b = find_agent(ID);
+            omni_apply_force(-vx()*damage*20, -vy()*damage*20);
+            damage += 20;
+            remove_agent(ID);
+        });
+
         notice_collisions_with("Wall", [&](Event &e){
             damage = 1;
             bigCount = 10;
@@ -91,6 +109,11 @@ class MyDudeController : public Process, public AgentInterface {
 
         notice_collisions_with("Accel", [&](Event &e){
             magnitude += 100;
+            remove_agent(e.value()["id"]);
+        });
+
+        notice_collisions_with("BouncePU", [&](Event &e){
+            bounceCount = 5;
             remove_agent(e.value()["id"]);
         });
     }
@@ -115,7 +138,7 @@ class MyDudeController : public Process, public AgentInterface {
     int damage;
     int smallCount;
     int bigCount;
-    int ricCount;
+    int bounceCount;
     const json BULLET_STYLE = { 
                    {"fill", "black"}, 
                    {"stroke", "#888"}, 

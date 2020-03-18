@@ -1,0 +1,19 @@
+{
+    "name": "Barrier",
+    "type": "static",
+    "description": "Replace this string with a description",
+    "shape": [
+        { "x": -100, "y": -5 },
+        { "x": -100, "y": 5 },
+        { "x": 100, "y": 5 },
+        { "x": 100, "y": -5 }
+    ],
+    "friction": {
+      "collision": 0,
+      "linear": 0,
+      "rotational": 0
+    },
+    "sensors": [],
+    "mass": 1,    
+    "controller": "lib/barrier.so"
+}
