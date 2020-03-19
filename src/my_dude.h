@@ -5,12 +5,13 @@
 
 using namespace enviro;
 
-//TODO: add counters for bullets, add ricochet bullets, add barriers, add damage UI
+//Player controlled guy that can rotate, move, and shoot different projectiles.
 class MyDudeController : public Process, public AgentInterface {
 
     public:
     MyDudeController() : Process(), AgentInterface(), boostCount(1), mineCount(0), magnitude(300), f(0), tau(0), firing(false), damage(0), bigCount(10), smallCount(25), bigReload(0), smallReload(0) {}
 
+    //Sets up listeners for key events and establishes collisions with different agents
     void init() {
         watch("keydown", [&](Event &e) {
             if ( e.value()["client_id"] == get_client_id() ) {
@@ -50,7 +51,7 @@ class MyDudeController : public Process, public AgentInterface {
                 } else if ( k == "d" ) {
                         tau = magnitude;
                 }else if ( k == " " && boostCount > 0) {
-                        apply_force(magnitude*50,tau);
+                        apply_force(magnitude*20,tau);
                         boostCount--;
                 }
             }
@@ -97,36 +98,22 @@ class MyDudeController : public Process, public AgentInterface {
             damage = 1;
             bigCount = 10;
             smallCount = 25;
+            boostCount = 1;
             double x = rand() % 2 ? 500 : -500;
             double y = rand() % 2 ? 500 : -500;
             teleport(x,y,0);
         });
 
-        notice_collisions_with("Reload", [&](Event &e){
-            smallCount = 25;
+        notice_collisions_with("Drone", [&](Event &e){
+            damage = 1;
             bigCount = 10;
-            remove_agent(e.value()["id"]);
+            smallCount = 25;
+            boostCount = 1;
+            double x = rand() % 2 ? 500 : -500;
+            double y = rand() % 2 ? 500 : -500;
+            teleport(x,y,0);
         });
 
-        notice_collisions_with("Accel", [&](Event &e){
-            magnitude += 100;
-            remove_agent(e.value()["id"]);
-        });
-
-        notice_collisions_with("MinePU", [&](Event &e){
-            mineCount += 5;
-            remove_agent(e.value()["id"]);
-        });
-
-        notice_collisions_with("Boost", [&](Event &e){
-            boostCount += 2;
-            remove_agent(e.value()["id"]);
-        });
-
-        notice_collisions_with("Health", [&](Event &e){
-            damage = damage <= 10 ? 1 : damage - 10;
-            remove_agent(e.value()["id"]);
-        });
         watch("PU_"+std::to_string(id()), [&](Event& e){
             int t = e.value()["type"];
             switch (t) {
@@ -150,6 +137,8 @@ class MyDudeController : public Process, public AgentInterface {
         });
     }
     void start() {}
+    
+    //Reloads the ammo on a timer and also handles movement.
     void update() {
         apply_force(f,tau);
         if(smallReload++ >= 10 && smallCount < 25) {

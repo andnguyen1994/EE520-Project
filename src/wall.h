@@ -5,6 +5,7 @@
 
 using namespace enviro;
 
+//Static element that encompasses map. Players lose when they hit the wall
 class WallController : public Process, public AgentInterface {
 
     public:

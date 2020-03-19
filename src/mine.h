@@ -5,26 +5,20 @@
 
 using namespace enviro;
 
-//maybe use an event emitter
+//Projectile type that is plopped out behind dude. Stays until collided with or hits 500 ticks
 class MineController : public Process, public AgentInterface {
 
     public:
     MineController() : Process(), AgentInterface(), counter(0) {}
 
-    void init() {
-        notice_collisions_with("Wall", [&](Event &e) {
-            if(counter++ >= 5){
-                remove_agent(id());
-            }
-        });
-        notice_collisions_with("Barrier", [&](Event &e) {
-            if(counter++ >= 5){
-                remove_agent(id());
-            }
-        });
-    }
+    void init() {}
     void start() {}
-    void update() {}
+    //removes agent upon 500 cycles.
+    void update() {
+        if(counter++ >= 500){
+            remove_agent(id());
+        }
+    }
     void stop() {}
 
     int counter;

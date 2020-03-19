@@ -10,67 +10,88 @@
       "definition": "defs/wall.json",
       "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
       "position": { "x": 0, "y": 600, "theta": 0 }
-  },
-  {
-    "definition": "defs/wall.json",
-    "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
-    "position": { "x": 0, "y": -600, "theta": 0 }
-  },
-  {
-    "definition": "defs/wall.json",
-    "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
-    "position": { "x": 600, "y": 0, "theta": 1.57 }
-  },
-  {
-    "definition": "defs/wall.json",
-    "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
-    "position": { "x": -600, "y": 0, "theta": 1.57 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": -350, "y": -200, "theta": 0 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": -200, "y": -350, "theta": 1.57 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": 350, "y": -200, "theta": 0 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": 200, "y": -350, "theta": 1.57 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": -350, "y": 200, "theta": 0 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": -200, "y": 350, "theta": 1.57 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": 350, "y": 200, "theta": 0 }
-  },
-  {
-    "definition": "defs/barrier.json",
-    "style": { "fill": "black", "stroke": "#888"},
-    "position": { "x": 200, "y": 350, "theta": 1.57 }
-  },
-  {
-    "definition": "defs/power_up.json",
-    "style": { "fill": "violet", "stroke": "black" },
-    "position": { "x": 0, "y": 0, "theta": 0 }
-  }      
+    },
+    {
+      "definition": "defs/wall.json",
+      "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
+      "position": { "x": 0, "y": -600, "theta": 0 }
+    },
+    {
+      "definition": "defs/wall.json",
+      "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
+      "position": { "x": 600, "y": 0, "theta": 1.57 }
+    },
+    {
+      "definition": "defs/wall.json",
+      "style": { "fill": "red", "stroke": "#888", "strokeWidth": "5px", "strokeOpacity": "0.25"},
+      "position": { "x": -600, "y": 0, "theta": 1.57 }
+    },
+    
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": -375, "y": -200, "theta": 0 }
+    },
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": -200, "y": -375, "theta": 1.57 }
+    },
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": 375, "y": -200, "theta": 0 }
+    },
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": 200, "y": -375, "theta": 1.57 }
+    },
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": -375, "y": 200, "theta": 0 }
+    },
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": -200, "y": 375, "theta": 1.57 }
+    },
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": 375, "y": 200, "theta": 0 }
+    },
+    {
+      "definition": "defs/barrier.json",
+      "style": { "fill": "black", "stroke": "#888"},
+      "position": { "x": 200, "y": 375, "theta": 1.57 }
+    },
+    {
+      "definition": "defs/power_up.json",
+      "style": { "fill": "violet", "stroke": "black" },
+      "position": { "x": 0, "y": 0, "theta": 0 }
+    },
+    {
+      "definition": "defs/drone.json",
+      "style": { "fill": "red", "stroke": "black" },
+      "position": { "x": 250, "y": 0, "theta": 0 }
+    },
+    {
+      "definition": "defs/drone.json",
+      "style": { "fill": "red", "stroke": "black" },
+      "position": { "x": -250, "y": 0, "theta": 3.14 }
+    },
+    {
+      "definition": "defs/drone.json",
+      "style": { "fill": "red", "stroke": "black" },
+      "position": { "x": 0, "y": 250, "theta": 1.57 }
+    },
+    {
+      "definition": "defs/drone.json",
+      "style": { "fill": "red", "stroke": "black" },
+      "position": { "x": 0, "y": -250, "theta": -1.57 }
+    }        
   ],
 
   "references": [

@@ -5,6 +5,7 @@
 
 using namespace enviro;
 
+//Large projectile that player can shoot. Does significant damage and knockback
 class BigBulletController : public Process, public AgentInterface {
 
     public:
@@ -12,6 +13,7 @@ class BigBulletController : public Process, public AgentInterface {
 
     void init() {}
     void start() {}
+    //stays in play for 30 cycles
     void update() {
         if ( counter++ > 30 ) {
             remove_agent(id());

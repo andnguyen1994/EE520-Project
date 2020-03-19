@@ -5,6 +5,7 @@
 
 using namespace enviro;
 
+//Static map element
 class BarrierController : public Process, public AgentInterface {
 
     public:

@@ -5,11 +5,13 @@
 
 using namespace enviro;
 
+//small projectile that deals moderate damage and knockback
 class SmallBulletController : public Process, public AgentInterface {
 
     public:
     SmallBulletController() : Process(), AgentInterface(), counter(0) {}
 
+    //disappears if collision with wall, barrier, or big bullet
     void init() {
         notice_collisions_with("Wall", [&](Event &e) {
             remove_agent(id());
@@ -18,6 +20,9 @@ class SmallBulletController : public Process, public AgentInterface {
             remove_agent(id());
         });
         notice_collisions_with("BigBullet", [&](Event &e) {
+            remove_agent(id());
+        });
+        notice_collisions_with("Drone", [&](Event &e) {
             remove_agent(id());
         });
     }

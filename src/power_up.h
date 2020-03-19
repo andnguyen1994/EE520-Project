@@ -5,11 +5,13 @@
 
 using namespace enviro;
 
+//Powerup object that players can pick up. Provides either movespeed, boosts, mines, reload, or heals
 class PowerUpController : public Process, public AgentInterface {
 
     public:
     PowerUpController() : Process(), AgentInterface(), type(0) {}
 
+    //upon creation, chooses a random type of powerup and on collision, alerts dude to what type of powerup to handle
     void init() {
         type = rand() % 5;
         label(powerups[type], -5, 5);
